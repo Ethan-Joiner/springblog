@@ -47,6 +47,18 @@ public class StringTransformController {
             return word;
         }
     }
+
+    @GetMapping(value = "**")
+    @ResponseBody
+    public String defaultMsg(){
+        return "This is not a valid path";
+    }
+
+    @GetMapping(value = "/wildcard" + "**")
+    @ResponseBody
+    public String defaultWildCardMsg(){
+        return "This is not a valid path";
+    }
 }
 
 
