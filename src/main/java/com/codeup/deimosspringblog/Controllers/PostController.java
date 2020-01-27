@@ -17,19 +17,19 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     @ResponseBody
-    public String idPage(@PathVariable long id){
+    public String viewPost(@PathVariable long id){
         return "This is the page for id = " + id;
     }
 
     @GetMapping("/posts/create")
     @ResponseBody
-    public String viewCreatePage(){
+    public String createPostForm(){
         return "Here is the create page!";
     }
 
     @PostMapping("/posts/create")
     @ResponseBody
-    public String createPage(){
+    public String submitPost(){
         return "Create a post!";
     }
 }
