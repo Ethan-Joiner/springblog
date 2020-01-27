@@ -14,14 +14,12 @@ public class DiceController {
         return "roll-dice";
     }
 
-    @GetMapping("/roll-dice/num")
+    @GetMapping("/roll-dice/n")
     public String showResult(@RequestParam int num, Model model){
         int random = (int) (Math.random() * 6) + 1;
             model.addAttribute("random", random);
             model.addAttribute("num", num);
 
-//        if (!Integer.toString(num).isEmpty()) {
-//        }
         return "roll-dice";
     }
 }
