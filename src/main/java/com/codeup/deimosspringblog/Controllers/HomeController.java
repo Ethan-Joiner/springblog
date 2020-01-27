@@ -1,16 +1,16 @@
 package com.codeup.deimosspringblog.Controllers;
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class DeimosController {
+public class HomeController {
 
-    @GetMapping("/deimos/{date}")
+    @GetMapping("/")
     @ResponseBody
-    public String date(@PathVariable String date) {
-        return date + " days";
+    public String landing(){
+        return "This is the landing page!";
     }
 }

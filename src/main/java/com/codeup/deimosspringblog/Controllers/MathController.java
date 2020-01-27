@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class DeimosController {
+public class MathController {
 
-    @GetMapping("/deimos/{date}")
+    @GetMapping("/add/{num1}/and/{num2}")
     @ResponseBody
-    public String date(@PathVariable String date) {
-        return date + " days";
+    public int add(@PathVariable int num1, @PathVariable int num2){
+        return num1 + num2;
     }
 }
