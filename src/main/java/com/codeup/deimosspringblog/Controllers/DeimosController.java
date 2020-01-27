@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class DeimosController {
 
-    @GetMapping("/deimos/{date}")
-    @ResponseBody
-    public String date(@PathVariable String date) {
-        return date + " days";
+    @GetMapping("/deimos")
+
+    public String date() {
+        return "days";
     }
 }
