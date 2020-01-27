@@ -25,8 +25,8 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     public String viewPost(@PathVariable long id, Model model){
-        Post post = new Post("Post 1", "Post Body 1");
-        model.addAttribute("post", post);
+//        Post post =
+        model.addAttribute("post", new Post(id, "Post " + id, "Post Body " + id));
 
         return "posts/show";
     }
