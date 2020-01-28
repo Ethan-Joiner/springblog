@@ -1,6 +1,6 @@
-package com.codeup.deimosspringblog.Controllers;
+package com.codeup.deimosspringblog.controllers;
 
-import com.codeup.deimosspringblog.Models.Post;
+import com.codeup.deimosspringblog.models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

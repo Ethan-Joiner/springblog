@@ -1,4 +1,4 @@
-package com.codeup.deimosspringblog.Models;
+package com.codeup.deimosspringblog.models;
 
 public class Post {
 

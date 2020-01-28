@@ -1,4 +1,4 @@
-package com.codeup.deimosspringblog.Controllers;
+package com.codeup.deimosspringblog.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
