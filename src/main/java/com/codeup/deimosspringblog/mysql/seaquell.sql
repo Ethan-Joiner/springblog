@@ -1,5 +1,7 @@
+drop database doglister_db;
 
 USE doglister_db;
+
 INSERT INTO dogs (age, name, reside_state)
 VALUES
 (2, 'Chuck', 'TX'),
