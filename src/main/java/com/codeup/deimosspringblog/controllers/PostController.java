@@ -1,6 +1,7 @@
 package com.codeup.deimosspringblog.controllers;
 
 import com.codeup.deimosspringblog.models.Post;
+import com.codeup.deimosspringblog.models.Posts;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,12 @@ import java.util.ArrayList;
 
 @Controller
 public class PostController {
+
+    private final Posts postDao;
+
+    public PostController(Posts postDao) {
+        this.postDao = postDao;
+    }
 
     @GetMapping("/posts")
     public String index(Model model){
@@ -42,4 +49,6 @@ public class PostController {
     public String submitPost(){
         return "Create a post!";
     }
+
+
 }

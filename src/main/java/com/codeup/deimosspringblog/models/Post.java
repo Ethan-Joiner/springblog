@@ -1,9 +1,20 @@
 package com.codeup.deimosspringblog.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="posts")
 public class Post {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = ("INT UNSIGNED"))
     private long id;
+
+    @Column(nullable = false, length = 50)
     private String title;
+
+    @Column(length = 1000, nullable = false)
     private String body;
 
     public Post(String title, String body){
