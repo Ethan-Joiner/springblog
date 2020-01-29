@@ -19,10 +19,9 @@ public class PostController {
 
     @GetMapping("/posts")
     public String index(Model model){
-        ArrayList<Post> posts = new ArrayList<>();
-        posts.add(new Post("Post 1", "Post Description 1"));
-        posts.add(new Post("Post 2", "Post Description 2"));
-        model.addAttribute("posts", posts);
+
+        model.addAttribute("posts", postDao.findAll());
+
         return "posts/index";
 
     }
@@ -48,13 +47,17 @@ public class PostController {
     }
 
     @GetMapping("/posts/edit")
-    public String showEditView(@RequestParam Long id, Model model){
+    public String showEditView(@RequestParam long id, Model model){
         model.addAttribute("post", postDao.findById(id));
-        System.out.println(postDao.getOne(1L));
-        System.out.println(postDao.findById(1));
-
         return "posts/edit";
 
+    }
+
+    @PostMapping("/posts/edit")
+    public String editPost(@RequestParam long id, @RequestParam String title, @RequestParam String body){
+        Post post = new Post(id, title, body);
+        postDao.save(post);
+        return "redirect:/posts";
     }
 
 
