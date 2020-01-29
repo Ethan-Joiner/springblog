@@ -60,5 +60,18 @@ public class PostController {
         return "redirect:/posts";
     }
 
+    @GetMapping("/posts/delete")
+    public String showDeleteView(@RequestParam long id, Model model){
+        model.addAttribute("post", postDao.findById(id));
+        return "posts/delete";
+    }
+
+    @PostMapping("/posts/delete")
+    public String deletePost(@RequestParam long id){
+        postDao.delete(postDao.findById(id));
+        return "redirect:/posts";
+    };
+
+
 
 }
