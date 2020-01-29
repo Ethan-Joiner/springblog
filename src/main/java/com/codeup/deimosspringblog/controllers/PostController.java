@@ -2,6 +2,7 @@ package com.codeup.deimosspringblog.controllers;
 
 import com.codeup.deimosspringblog.models.Post;
 import com.codeup.deimosspringblog.models.Posts;
+import com.codeup.deimosspringblog.models.Users;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,8 +13,12 @@ import java.util.ArrayList;
 public class PostController {
 
     private final Posts postDao;
+    private final Users userDao;
 
-    public PostController(Posts postDao) {
+
+
+    public PostController(Posts postDao, Users userDao) {
+        this.userDao = userDao;
         this.postDao = postDao;
     }
 
