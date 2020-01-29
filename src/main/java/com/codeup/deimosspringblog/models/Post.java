@@ -21,6 +21,9 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @OneToOne
+    private PostDetails postDetails;
+
     public Post(){};
 
     public Post(String title, String body){
@@ -56,5 +59,21 @@ public class Post {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public PostDetails getPostDetails() {
+        return postDetails;
+    }
+
+    public void setPostDetails(PostDetails postDetails) {
+        this.postDetails = postDetails;
     }
 }

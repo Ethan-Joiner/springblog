@@ -28,9 +28,14 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     public String viewPost(@PathVariable long id, Model model){
-//        Post post =
         model.addAttribute("post", new Post(id, "Post " + id, "Post Body " + id));
 
+        return "posts/show";
+    }
+
+    @GetMapping("/posts/{id}/details")
+    public String viewDetails(@PathVariable long id, Model model){
+        model.addAttribute("post", postDao.findById(id));
         return "posts/show";
     }
 
