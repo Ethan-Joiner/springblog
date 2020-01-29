@@ -41,15 +41,15 @@ public class PostController {
     }
 
     @GetMapping("/posts/create")
-    @ResponseBody
     public String createPostForm(){
-        return "Here is the create page!";
+        return "/posts/create";
     }
 
     @PostMapping("/posts/create")
-    @ResponseBody
-    public String submitPost(){
-        return "Create a post!";
+    public String submitPost(@RequestParam String title, @RequestParam String body){
+        Post newPost = new Post(title,body, userDao.findById(1L));
+        postDao.save(newPost);
+        return "redirect:/posts";
     }
 
     @GetMapping("/posts/edit")

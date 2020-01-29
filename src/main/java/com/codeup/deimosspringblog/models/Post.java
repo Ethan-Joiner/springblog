@@ -23,7 +23,8 @@ public class Post {
 
     public Post(){};
 
-    public Post(String title, String body){
+    public Post(String title, String body, User user){
+        this.user = user;
         this.title = title;
         this.body = body;
     }
