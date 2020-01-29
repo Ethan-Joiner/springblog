@@ -33,9 +33,10 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     public String viewPost(@PathVariable long id, Model model){
-//        Post post =
-        model.addAttribute("post", new Post(id, "Post " + id, "Post Body " + id));
 
+        String username = postDao.findById(id).getUser().getUsername();
+        model.addAttribute("post", postDao.findById(id));
+        System.out.println(username);
         return "posts/show";
     }
 
