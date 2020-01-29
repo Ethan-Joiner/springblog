@@ -47,7 +47,8 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String submitPost(@RequestParam String title, @RequestParam String body){
-        Post newPost = new Post(title,body, userDao.findById(1L));
+        long random = (long) ((Math.random() * 3) + 1);
+        Post newPost = new Post(title,body, userDao.findById(random));
         postDao.save(newPost);
         return "redirect:/posts";
     }
