@@ -2,6 +2,7 @@ package com.codeup.deimosspringblog.controllers;
 
 import com.codeup.deimosspringblog.models.Post;
 import com.codeup.deimosspringblog.models.Posts;
+import com.codeup.deimosspringblog.models.User;
 import com.codeup.deimosspringblog.models.Users;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,7 +50,10 @@ public class PostController {
     public String submitPost(@RequestParam String title, @RequestParam String body){
         long random = (long) ((Math.random() * 3) + 1);
         Post newPost = new Post(title,body, userDao.findById(random));
+        User user = userDao.findById(random);
+        user.getPosts().add(newPost);
         postDao.save(newPost);
+
         return "redirect:/posts";
     }
 
