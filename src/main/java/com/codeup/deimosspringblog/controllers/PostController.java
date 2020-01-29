@@ -4,10 +4,7 @@ import com.codeup.deimosspringblog.models.Post;
 import com.codeup.deimosspringblog.models.Posts;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -48,6 +45,16 @@ public class PostController {
     @ResponseBody
     public String submitPost(){
         return "Create a post!";
+    }
+
+    @GetMapping("/posts/edit")
+    public String showEditView(@RequestParam Long id, Model model){
+        model.addAttribute("post", postDao.findById(id));
+        System.out.println(postDao.getOne(1L));
+        System.out.println(postDao.findById(1));
+
+        return "posts/edit";
+
     }
 
 
