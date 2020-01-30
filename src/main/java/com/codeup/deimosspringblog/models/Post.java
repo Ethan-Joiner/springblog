@@ -30,9 +30,9 @@ public class Post {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name="post-tag",
-            joinColumns = {@JoinColumn(name="post-id")},
-            inverseJoinColumns = {@JoinColumn(name="tag-id")}
+            name="post_tag",
+            joinColumns = {@JoinColumn(name="post_id")},
+            inverseJoinColumns = {@JoinColumn(name="tag_id")}
     )
     private List<Tag> tags;
 
@@ -96,5 +96,13 @@ public class Post {
 
     public void setImages(List<PostImage> images) {
         this.images = images;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
     }
 }

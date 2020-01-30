@@ -2,18 +2,24 @@ package com.codeup.deimosspringblog.controllers;
 
 import com.codeup.deimosspringblog.models.Post;
 import com.codeup.deimosspringblog.models.Posts;
+import com.codeup.deimosspringblog.models.Tag;
+import com.codeup.deimosspringblog.models.Tags;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class PostController {
 
     private final Posts postDao;
+    private final Tags tagDao;
 
-    public PostController(Posts postDao) {
+
+    public PostController(Posts postDao, Tags tagDao) {
+        this.tagDao = tagDao;
         this.postDao = postDao;
     }
 
@@ -31,6 +37,23 @@ public class PostController {
         model.addAttribute("post", new Post(id, "Post " + id, "Post Body " + id));
 
         return "posts/show";
+    }
+
+    @GetMapping("/tags")
+    public String showTagTest(Model model){
+
+        List<Post> posts = new ArrayList<>();
+        List<Tag> tags = tagDao.findAll();
+
+        for (Tag tag: tags ) {
+            if (tag.getName().equals("funny")) {
+                for (int i = 0; i < tag.getPosts().size() - 1; i++)
+                posts.add(tag.getPosts().get(i));
+            }
+        }
+        model.addAttribute("posts", posts);
+        return "posts/tag";
+
     }
 
     @GetMapping("/posts/{id}/details")
