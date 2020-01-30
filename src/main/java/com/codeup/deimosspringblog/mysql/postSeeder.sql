@@ -30,4 +30,17 @@ VALUES
 ('CatPic1', 'https://www.pexels.com/photo/adorable-animal-blur-cat-617278/', 1),
 ('CatPic1', 'https://www.pexels.com/photo/cat-whiskers-kitty-tabby-20787/', 1);
 
+INSERT INTO tags(name)
+VALUES
+('Silly'),
+('Funny'),
+('Humor');
+
+INSERT INTO post_tag(post_id, tag_id)
+VALUES
+(1,1),
+(1,2),
+(2,2),
+(2,3);
+
 
