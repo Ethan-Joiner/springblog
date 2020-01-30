@@ -17,6 +17,7 @@ public class PostDetails {
 
     private String topicDescription;
 
+//    "mapped by" creates foreign key on child table
     @OneToOne(mappedBy = "postDetails")
     private Post post;
 
