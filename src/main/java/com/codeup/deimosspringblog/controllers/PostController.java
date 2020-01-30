@@ -55,7 +55,12 @@ public class PostController {
     public String showEditView(@RequestParam long id, Model model){
         model.addAttribute("post", postDao.findById(id));
         return "posts/edit";
+    }
 
+    @GetMapping("/cats")
+    public String cats(Model model){
+        model.addAttribute("post", postDao.findById(1L));
+        return "posts/cat";
     }
 
     @PostMapping("/posts/edit")
