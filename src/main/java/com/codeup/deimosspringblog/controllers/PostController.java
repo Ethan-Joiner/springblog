@@ -4,6 +4,7 @@ import com.codeup.deimosspringblog.models.Post;
 import com.codeup.deimosspringblog.models.Posts;
 import com.codeup.deimosspringblog.models.User;
 import com.codeup.deimosspringblog.models.Users;
+import com.codeup.deimosspringblog.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +16,14 @@ public class PostController {
 
     private final Posts postDao;
     private final Users userDao;
+    private final EmailService emailService;
 
 
 
-    public PostController(Posts postDao, Users userDao) {
+    public PostController(Posts postDao, Users userDao, EmailService emailService) {
         this.userDao = userDao;
         this.postDao = postDao;
+        this.emailService = emailService;
     }
 
     @GetMapping("/posts")
@@ -53,6 +56,7 @@ public class PostController {
         User user = userDao.findById(random);
         post.setUser(user);
         postDao.save(post);
+        emailService.prepareAndSend(post, "Subject", "Bawdeh");
 
         return "redirect:/posts";
     }
