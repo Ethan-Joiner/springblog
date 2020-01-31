@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<div th:each="post : ${posts}">
+<div th:each="post : ${tag.posts}">
     <h3 th:text="${post.title}"></h3>
 </div>
 

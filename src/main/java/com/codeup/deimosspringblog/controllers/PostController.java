@@ -42,19 +42,33 @@ public class PostController {
     @GetMapping("/tags")
     public String showTagTest(Model model){
 
-        List<Post> posts = new ArrayList<>();
+//        List<Post> posts = postDao.findAll();
+//        List<Post> funny = new ArrayList<>();
+//
+//        for (Post post: posts ) {
+//                for (int i = 0; i < post.getTags().size() - 1; i++){
+//                if (post.getTags().get(i).getName().equals("funny")){
+//                    funny.add(post);
+//            }
+//                }
+//            }
+//        model.addAttribute("posts", funny);
+//        return "posts/tag";
         List<Tag> tags = tagDao.findAll();
+        Tag funny = new Tag();
 
-        for (Tag tag: tags ) {
-            if (tag.getName().equals("funny")) {
-                for (int i = 0; i < tag.getPosts().size() - 1; i++)
-                posts.add(tag.getPosts().get(i));
+        for (Tag tag: tags){
+            if (tag.getName().equals("funny")){
+                funny = tag;
+                break;
             }
         }
-        model.addAttribute("posts", posts);
+//        Tag funny = tagDao.findById(2L);
+        model.addAttribute("tag", funny);
         return "posts/tag";
+        }
 
-    }
+
 
     @GetMapping("/posts/{id}/details")
     public String viewDetails(@PathVariable long id, Model model){
