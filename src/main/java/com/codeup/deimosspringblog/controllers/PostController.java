@@ -42,17 +42,17 @@ public class PostController {
     }
 
     @GetMapping("/posts/create")
-    public String createPostForm(){
+    public String createPostForm(Model model){
+        model.addAttribute("post", new Post());
         return "/posts/create";
     }
 
     @PostMapping("/posts/create")
-    public String submitPost(@RequestParam String title, @RequestParam String body){
+    public String submitPost(@ModelAttribute Post post){
         long random = (long) ((Math.random() * 3) + 1);
-        Post newPost = new Post(title,body, userDao.findById(random));
         User user = userDao.findById(random);
-        user.getPosts().add(newPost);
-        postDao.save(newPost);
+        post.setUser(user);
+        postDao.save(post);
 
         return "redirect:/posts";
     }
