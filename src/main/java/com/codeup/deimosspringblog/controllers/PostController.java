@@ -65,8 +65,7 @@ public class PostController {
     }
 
     @PostMapping("/posts/edit")
-    public String editPost(@RequestParam long id, @RequestParam String title, @RequestParam String body){
-        Post post = new Post(id, title, body);
+    public String editPost(@ModelAttribute Post post){
         postDao.save(post);
         return "redirect:/posts";
     }
