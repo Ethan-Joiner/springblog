@@ -47,7 +47,7 @@ public class PostController {
 //
 //        for (Post post: posts ) {
 //                for (int i = 0; i < post.getTags().size() - 1; i++){
-//                if (post.getTags().get(i).getName().equals("funny")){
+//                if (post.getTags().get(i).getName().equalsIgnoreCase("funny")){
 //                    funny.add(post);
 //            }
 //                }
@@ -58,9 +58,10 @@ public class PostController {
         Tag funny = new Tag();
 
         for (Tag tag: tags){
-            if (tag.getName().equals("funny")){
+            if (tag.getName().equalsIgnoreCase("funny")){
                 funny = tag;
                 break;
+//            System.out.println(tag.getName());
             }
         }
 //        Tag funny = tagDao.findById(2L);
