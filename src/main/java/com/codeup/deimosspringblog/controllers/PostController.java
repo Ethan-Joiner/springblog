@@ -1,15 +1,13 @@
 package com.codeup.deimosspringblog.controllers;
 
 import com.codeup.deimosspringblog.models.Post;
-import com.codeup.deimosspringblog.models.Posts;
+import com.codeup.deimosspringblog.repositories.Posts;
 import com.codeup.deimosspringblog.models.User;
-import com.codeup.deimosspringblog.models.Users;
+import com.codeup.deimosspringblog.repositories.Users;
 import com.codeup.deimosspringblog.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 
 @Controller
 public class PostController {
