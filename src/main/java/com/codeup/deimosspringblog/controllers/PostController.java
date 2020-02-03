@@ -1,10 +1,12 @@
 package com.codeup.deimosspringblog.controllers;
 
 import com.codeup.deimosspringblog.models.Post;
+import com.codeup.deimosspringblog.models.UserWithRoles;
 import com.codeup.deimosspringblog.repositories.Posts;
 import com.codeup.deimosspringblog.models.User;
 import com.codeup.deimosspringblog.repositories.Users;
 import com.codeup.deimosspringblog.services.EmailService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,8 @@ public class PostController {
     private final Posts postDao;
     private final Users userDao;
     private final EmailService emailService;
+//    UserWithRoles user = new UserWithRoles((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+
 
 
 
@@ -50,11 +54,11 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String submitPost(@ModelAttribute Post post){
-        long random = (long) ((Math.random() * 3) + 1);
-        User user = userDao.findById(random);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         post.setUser(user);
         postDao.save(post);
-        emailService.prepareAndSend(post, "Subject", "Bawdeh");
+//        emailService.prepareAndSend(post, "Subject", "Body");
 
         return "redirect:/posts";
     }
