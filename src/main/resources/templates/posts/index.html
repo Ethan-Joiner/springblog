@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Index</title>
-</head>
+<head th:replace="partials/head :: head"></head>
+
 <body>
-
-<div th:each="post : ${posts}">
-    <h2 th:text="${post.title}"></h2>
-    <p th:text="${post.body}"></p>
-
-<div>
-    <form action="/posts/edit" method="get">
-        <input type="hidden" name="id" th:value="${post.id}">
-        <button type="submit">Click to Edit</button>
-    </form>
-    <form action="/posts/delete" method="get">
-        <input type="hidden" name="id" th:value="${post.id}">
-        <button type="submit">Click to Delete</button>
-    </form>
+<nav th:replace="partials/navbar :: navbar"></nav>
+<div class="container">
+<div th:each="post : ${posts}" class="float-left m-3">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h4 th:text="${post.title}" class="card-title"></h4>
+            <p th:text="${post.body}" class="card-text"></p>
+        </div>
+    </div>
 </div>
 </div>
+<!--<div>-->
+<!--    <form action="/posts/edit" method="get">-->
+<!--        <input type="hidden" name="id" th:value="${post.id}">-->
+<!--        <button type="submit">Click to Edit</button>-->
+<!--    </form>-->
+<!--    <form action="/posts/delete" method="get">-->
+<!--        <input type="hidden" name="id" th:value="${post.id}">-->
+<!--        <button type="submit">Click to Delete</button>-->
+<!--    </form>-->
+<!--</div>-->
 
 </body>
 </html>

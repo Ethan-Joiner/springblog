@@ -9,7 +9,20 @@
 <h1>Welcome!<span th:if="${user != null}">  <span th:text="${user.username}"></span></span>
 </h1>
 
-<footer th:replace="partials/footer :: footer"></footer>
+<div th:if="${user != null}">
+    <h2>Here Are All Your Current Ads!</h2>
+    <div th:each="post : ${posts}" class="float-left m-3">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h4 th:text="${post.title}" class="card-title"></h4>
+                <p th:text="${post.body}" class="card-text"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<h2 th:if="${user == null}">Log in or Sign Up to Get Started!</h2>
+
+<!--<footer th:replace="partials/footer :: footer"></footer>-->
 
 <th:block th:insert="partials/scripts :: scripts"></th:block>
 </body>

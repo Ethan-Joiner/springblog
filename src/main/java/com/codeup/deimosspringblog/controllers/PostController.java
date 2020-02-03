@@ -21,15 +21,30 @@ public class PostController {
 
 
 
-
     public PostController(Posts postDao, Users userDao, EmailService emailService) {
         this.userDao = userDao;
         this.postDao = postDao;
         this.emailService = emailService;
     }
 
+    @GetMapping("/home")
+    public String homePage(Model model){
+        if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
+            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("user", user);
+            System.out.println(user.getUsername());
+//            model.addAttribute("posts", user.getPosts());
+            return "/home";
+        } else {
+            return "/home";
+        }
+    }
+
     @GetMapping("/posts")
     public String index(Model model){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", user);
+
 
         model.addAttribute("posts", postDao.findAll());
 
@@ -53,10 +68,10 @@ public class PostController {
     }
 
     @PostMapping("/posts/create")
-    public String submitPost(@ModelAttribute Post post){
+    public String submitPost(@ModelAttribute Post post, Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        post.setUser(user);
         System.out.println(user);
+        post.setUser(user);
         postDao.save(post);
 //        emailService.prepareAndSend(post, "Subject", "Body");
 
