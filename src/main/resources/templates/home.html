@@ -5,7 +5,9 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<h1>Welcome! <span th:text="username + password"></span></h1>
+
+<h1>Welcome!<span th:if="${user != null}">  <span th:text="${user.username}"></span></span>
+</h1>
 
 <footer th:replace="partials/footer :: footer"></footer>
 

@@ -6,41 +6,38 @@
 </head>
 <body>
 
-<nav  id="navbar" class="navbar">
-    <ul>
-        <li>Home</li>
-        <li>On</li>
-        <li>The</li>
-        <li>Range</li>
-        <li>
-            <form th:action="@{/logout}" th:method="post">
-                <button class="btn-link btn" style="margin-top: 8px">Logout</button>
-            </form>
-        </li>
-    </ul>
-</nav>
-
 <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="/home">Blog</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+        <ul class="navbar-nav w-100">
+            <span th:if="${user == null}" class="w-100 d-flex">
+                <li>
+                <form th:action="@{/login}" th:method="get">
+                    <button class="btn-link btn" style="margin-top: 8px">Login</button>
+                </form>
+            </li><li>
+                <form th:action="@{/sign-up}" th:method="get">
+                    <button class="btn-link btn" style="margin-top: 8px">Sign Up</button>
+                </form>
             </li>
+            </span>
+
+            <span th:if="${user != null}" class="w-100 d-flex">
             <li class="nav-item">
                 <a class="nav-link" href="/posts/create">Create Post</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/posts">View All Posts</a>
             </li>
-            <li>
-                <form th:action="@{/logout}" th:method="post">
-                    <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+                <li class="ml-auto">
+                <form th:action="@{/logout}" th:method="post" >
+                    <button class="btn-link btn" >Logout</button>
                 </form>
             </li>
+            </span>
         </ul>
     </div>
 </nav>

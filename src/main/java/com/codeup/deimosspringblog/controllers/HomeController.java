@@ -13,13 +13,11 @@ public class HomeController {
     @GetMapping("/home")
     public String homePage(Model model){
         if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
-            System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
             User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            System.out.println(user.getUsername());
             model.addAttribute("user", user);
-            return "home";
+            return "/home";
         } else {
-            return "redirect:/login";
+            return "/home";
         }
     }
 
