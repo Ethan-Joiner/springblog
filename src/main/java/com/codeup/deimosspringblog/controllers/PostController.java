@@ -32,8 +32,8 @@ public class PostController {
         if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
             User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("user", user);
-            System.out.println(user.getUsername());
-//            model.addAttribute("posts", user.getPosts());
+            System.out.println(user.getId());
+            model.addAttribute("posts", user.getPosts());
             return "/home";
         } else {
             return "/home";
