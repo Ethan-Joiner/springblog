@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<form action="/posts/delete" method="post">
+<form th:action="@{/posts/delete}" method="post">
     <button type="submit">Are you sure you wish to delete this post?</button>
     <input type="hidden" name="id" th:value="${post.id}" id="id">
 

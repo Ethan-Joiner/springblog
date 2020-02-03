@@ -55,6 +55,7 @@ public class PostController {
     @PostMapping("/posts/create")
     public String submitPost(@ModelAttribute Post post){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println(user.getUsername());
 
         post.setUser(user);
         postDao.save(post);
