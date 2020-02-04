@@ -31,12 +31,8 @@ public class PostController {
     public String homePage(Model model){
         if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
             User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            System.out.println(user.getId());
-            System.out.println(user);
-            System.out.println(user.getUsername());
+
             user = userDao.findById(user.getId());
-//            THIS LINE
-//            user.setPosts(postDao.findById(1));
             model.addAttribute("user", user);
 
             return "home";
@@ -81,7 +77,7 @@ public class PostController {
 //        user.setPosts(post);
 //        emailService.prepareAndSend(post, "Subject", "Body");
 
-        return "redirect:/posts";
+        return "redirect:/home";
     }
 
     @GetMapping("/posts/edit")
@@ -96,7 +92,7 @@ public class PostController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(user);
         postDao.save(post);
-        return "redirect:/posts";
+        return "redirect:/home";
     }
 
     @GetMapping("/posts/delete")
@@ -108,7 +104,7 @@ public class PostController {
     @PostMapping("/posts/delete")
     public String deletePost(@RequestParam long id){
         postDao.delete(postDao.findById(id));
-        return "redirect:/posts";
+        return "redirect:/home";
     };
 
 
