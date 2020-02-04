@@ -70,7 +70,7 @@ public class User {
         return posts;
     }
 
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
+    public void setPosts(Post posts) {
+        this.posts.add(posts);
     }
 }

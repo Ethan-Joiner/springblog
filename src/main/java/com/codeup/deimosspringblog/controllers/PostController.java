@@ -31,12 +31,17 @@ public class PostController {
     public String homePage(Model model){
         if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
             User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            model.addAttribute("user", user);
             System.out.println(user.getId());
-            model.addAttribute("posts", user.getPosts());
-            return "/home";
+            System.out.println(user);
+            System.out.println(user.getUsername());
+            user = userDao.findById(user.getId());
+//            THIS LINE
+//            user.setPosts(postDao.findById(1));
+            model.addAttribute("user", user);
+
+            return "home";
         } else {
-            return "/home";
+            return "home";
         }
     }
 
@@ -73,6 +78,7 @@ public class PostController {
         System.out.println(user);
         post.setUser(user);
         postDao.save(post);
+//        user.setPosts(post);
 //        emailService.prepareAndSend(post, "Subject", "Body");
 
         return "redirect:/posts";
@@ -87,6 +93,8 @@ public class PostController {
 
     @PostMapping("/posts/edit")
     public String editPost(@ModelAttribute Post post){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        post.setUser(user);
         postDao.save(post);
         return "redirect:/posts";
     }
