@@ -12,7 +12,7 @@
     <input type="text" th:field="*{title}" th:value="${post.title}" id="title">
     <br>
     <label for="description">Description</label>
-    <input type="text" th:field="*{body}" th:value="${post.body}" id="description" style="width: 70%">
+    <textarea th:field="*{body}" th:text="${post.body}" id="description" style="width: 70%" th:rows="5"></textarea>
     <input type="hidden" th:field="*{id}" th:value="${post.id}" id="id">
     <button type="submit">Click to Save Changes</button>
 

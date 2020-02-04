@@ -11,7 +11,7 @@
 
 <div th:if="${user != null}">
     <div th:if="${user.posts.size() > 0}">
-    <h2>Here Are All Your Current Ads!</h2>
+    <h2>Here Are All Your Current Posts!</h2>
     <div th:each="post : ${user.posts}" class="float-left m-3">
         <div class="card" style="width: 18rem;">
             <div class="card-body">
@@ -32,7 +32,7 @@
     </div>
     </div>
     <div th:if="${user.posts.size() == 0}">
-        <h2>Once You Create an Add, You Can View It Here By Clicking The Blog Button in The Top Left</h2>
+        <h2>Once You Create an Post, You Can View It Here By Clicking The Blog Button in The Top Left</h2>
     </div>
 </div>
 <h2 th:if="${user == null}">Log in or Sign Up to Get Started!</h2>
