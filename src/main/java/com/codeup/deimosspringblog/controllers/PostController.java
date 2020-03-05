@@ -45,10 +45,7 @@ public class PostController {
     public String index(Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", user);
-
-
         model.addAttribute("posts", postDao.findAll());
-
         return "posts/index";
 
     }
