@@ -17,9 +17,6 @@ public class PostController {
     private final Posts postDao;
     private final Users userDao;
     private final EmailService emailService;
-//    UserWithRoles user = new UserWithRoles((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-
-
 
     public PostController(Posts postDao, Users userDao, EmailService emailService) {
         this.userDao = userDao;
@@ -47,12 +44,10 @@ public class PostController {
         model.addAttribute("user", user);
         model.addAttribute("posts", postDao.findAll());
         return "posts/index";
-
     }
 
     @GetMapping("/posts/{id}")
     public String viewPost(@PathVariable long id, Model model){
-
         String username = postDao.findById(id).getUser().getUsername();
         model.addAttribute("post", postDao.findById(id));
         System.out.println(username);
@@ -71,9 +66,6 @@ public class PostController {
         System.out.println(user);
         post.setUser(user);
         postDao.save(post);
-//        user.setPosts(post);
-//        emailService.prepareAndSend(post, "Subject", "Body");
-
         return "redirect:/home";
     }
 
